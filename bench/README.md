@@ -16,7 +16,7 @@ make
 ./bench
 
 # ターゲットサーバーを指定する
-TARGET_SERVER_URL = http://localhost:1323
+TARGET_SERVER_URL = http://192.168.33.11/:5000
 ./bench --target-url $TARGET_SERVER_URL
 
 # 初期データのディレクトリを指定する
