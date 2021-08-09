@@ -91,12 +91,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "webapp2" do |webapp2|
-    webapp1.vm.provision "shell", inline: <<-SHELL
+    webapp2.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y 
     SHELL
-    webapp1.vm.network "private_network", ip: "192.168.33.12"
-    webapp1.vm.provision "ansible" do |ansible|
+    webapp2.vm.network "private_network", ip: "192.168.33.12"
+    webapp2.vm.provision "ansible" do |ansible|
       ansible.playbook = "competitor.yaml"
       ansible.inventory_path = "inventory/hosts2"
       ansible.limit = 'all'
@@ -105,12 +105,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "bench" do |bench|
-    webapp1.vm.provision "shell", inline: <<-SHELL
+    bench.vm.provision "shell", inline: <<-SHELL
       apt-get update
       apt-get install -y 
     SHELL
-    webapp1.vm.network "private_network", ip: "192.168.33.13"
-    webapp1.vm.provision "ansible" do |ansible|
+    bench.vm.network "private_network", ip: "192.168.33.13"
+    bench.vm.provision "ansible" do |ansible|
       ansible.playbook = "bench.yaml"
       ansible.inventory_path = "inventory/hosts3"
       ansible.limit = 'all'
